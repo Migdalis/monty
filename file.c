@@ -25,6 +25,7 @@ int read_file(const char *filename)
 		/*printf("%s", line);*/
 	}
 	fclose(fo);
+	free_stack(top);
 	if (line)
 		free(line);
 	return (1);
@@ -57,14 +58,8 @@ int get_instruction(char *line, unsigned int line_num, stack_t **top)
 		{
 			if (strcmp(strtok_inst, "push") == 0)
 			{
-				n = atoi(strtok(NULL, FILE_DELIM));
-				if (n)
-					fun_opcode(top, n);
-				else
-				{
-					printf("L%d: usage: push integer\n", line_num);
-					exit(EXIT_FAILURE);
-				}
+				n = _atoi(strtok(NULL, FILE_DELIM), line_num);
+				fun_opcode(top, n);
 			}
 			else
 				fun_opcode(top, line_num);

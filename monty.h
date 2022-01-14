@@ -43,5 +43,6 @@ int get_instruction(char *line, unsigned int num_line, stack_t **);
 void op_push(stack_t **, unsigned int);
 void op_pall(stack_t **, unsigned int);
 void free_stack(stack_t *top);
+int _atoi(char *s, unsigned int);
 
 #endif /*MONTY_H*/
