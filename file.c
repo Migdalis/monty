@@ -9,7 +9,7 @@ int read_file(const char *filename)
 {
 	FILE *fo;
 	char *line = NULL;
-	int read = 0;
+	int read = 0, status = 0;
 	unsigned int line_num = 1;
 	size_t len = 0;
 	stack_t *top = NULL;
@@ -20,12 +20,16 @@ int read_file(const char *filename)
 
 	while ((read = getline(&line, &len, fo)) != -1)
 	{
-		get_instruction(line, line_num, &top);
+		status = get_instruction(line, line_num, &top);
+		if (status == -1)
+			break;
 		line_num++;
 		/*printf("%s", line);*/
 	}
 	fclose(fo);
 	free_stack(top);
+	if (status == -1)
+		exit(EXIT_FAILURE);
 	if (line)
 		free(line);
 	return (1);
@@ -52,7 +56,7 @@ int get_instruction(char *line, unsigned int line_num, stack_t **top)
 		if (fun_opcode == NULL)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_num, strtok_inst);
-			exit(EXIT_FAILURE);
+			return (-1);
 		}
 		else
 		{
