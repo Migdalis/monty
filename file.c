@@ -51,7 +51,7 @@ int get_instruction(char *line, unsigned int line_num, stack_t **top)
 		fun_opcode = get_function(strtok_inst);
 		if (fun_opcode == NULL)
 		{
-			printf("L%d: unknown instruction %s\n", line_num, strtok_inst);
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_num, strtok_inst);
 			exit(EXIT_FAILURE);
 		}
 		else

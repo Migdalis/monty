@@ -13,7 +13,7 @@ void op_push(stack_t **stack, unsigned int line_number)
 	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
-		printf("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}

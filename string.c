@@ -25,7 +25,7 @@ int _atoi(char *s, unsigned int line_num)
 		}
 		else
 		{
-			printf("L%d: usage: push integer\n", line_num);
+			fprintf(stderr, "L%d: usage: push integer\n", line_num);
 			exit(EXIT_FAILURE);
 		}
 		if (s[i] == '-')
