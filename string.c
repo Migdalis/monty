@@ -3,6 +3,7 @@
 /**
  *_atoi - Convert a string to integer
  *@s: String to convert
+ *@line_num: Line number where is the num to conver
  *Description: Function for convert a string
  *Return: The number convert
  *
